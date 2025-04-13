@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+Supplement Market
+{% endblock pagetitle %}
+
+{% block body %}
+<style>
+    .market-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+    
+    .market-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    
+    .product-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .product-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    .product-content {
+        padding: 1.5rem;
+    }
+    
+    .product-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    
+    .healthy {
+        background-color: var(--accent);
+        color: var(--primary-dark);
+    }
+    
+    .diseased {
+        background-color: #ff6b6b;
+        color: white;
+    }
+    
+    .product-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .product-disease {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .buy-button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        background-color: var(--accent);
+        color: var(--primary-dark);
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .buy-button:hover {
+        background-color: #3bb949;
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="market-container">
+    <div class="market-header">
+        <h1 class="display-4 mb-3"><i class="fas fa-shopping-basket"></i> Supplement Market</h1>
+        <p class="lead">Buy supplements & fertilizers for your plants</p>
+    </div>
+    
+    <div class="product-grid">
+        {% for index in range(0,supplement_name | length) %}
+        {% if index != 4 %}
+        <div class="product-card bg-card animated-item">
+            <img src="{{supplement_image[index]}}" class="product-image">
+            <div class="product-content">
+                {% if index==3 or index==5 or index==7 or index==11 or index==15 or index==18 or index==20 or index==23 or index==24 or index==25 or index==28 or index==38 %}
+                <span class="product-badge healthy"><i class="fas fa-heart"></i> Fertilizer</span>
+                {% else %}
+                <span class="product-badge diseased"><i class="fas fa-bug"></i> Supplement</span>
+                {% endif %}
+                
+                <h3 class="product-title">{{supplement_name[index]}}</h3>
+                <p class="product-disease">For {{disease[index]}}</p>
+                <a href="{{buy[index]}}" target="_blank" class="buy-button">
+                    <i class="fas fa-cart-plus"></i> Buy Now
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}

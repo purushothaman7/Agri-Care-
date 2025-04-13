@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+AI Engine
+{% endblock pagetitle %}
+
+{% block body %}
+<style>
+    .ai-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+    
+    .ai-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .feature-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 15px;
+        padding: 2rem;
+        height: 100%;
+        transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .upload-container {
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .upload-icon {
+        font-size: 4rem;
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+    }
+    
+    .file-upload-label {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: var(--primary-light);
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 1rem;
+    }
+    
+    .file-upload-label:hover {
+        background-color: var(--accent);
+        transform: translateY(-2px);
+    }
+    
+    .prevention-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    
+    .prevention-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid var(--card-border);
+    }
+    
+    .prevention-list li:before {
+        content: "✓";
+        color: var(--accent);
+        margin-right: 10px;
+    }
+
+    /* Error Modal Styles */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .modal-content {
+        background-color: var(--card-bg);
+        padding: 2rem;
+        border-radius: 15px;
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+        border: 1px solid var(--card-border);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-icon {
+        font-size: 3rem;
+        color: #ff6b6b;
+        margin-bottom: 1rem;
+    }
+
+    .modal-close {
+        margin-top: 1.5rem;
+        padding: 8px 20px;
+        background-color: var(--accent);
+        color: var(--primary-dark);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+        background-color: #3bb949;
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="ai-container">
+    <div class="ai-header">
+        <h1 class="display-4 mb-3"><i class="fas fa-brain"></i> AI Disease Detection Engine</h1>
+        <p class="lead">Upload a plant leaf image and let our AI detect potential diseases</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="feature-card bg-card animated-item">
+                <h3><i class="fas fa-question-circle"></i> Why Disease Detection?</h3>
+                <p>Plant diseases affect the growth of their respective species. Early detection is crucial for:</p>
+                <ul class="prevention-list">
+                    <li>Preventing crop losses</li>
+                    <li>Reducing pesticide use</li>
+                    <li>Maintaining healthy yields</li>
+                    <li>Saving time and resources</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="feature-card bg-card animated-item">
+                <div class="upload-container">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <form id="upload-form" action="/submit" method="POST" enctype="multipart/form-data">
+                        <input type="file" id="image-upload" name="image" hidden>
+                        <label for="image-upload" class="file-upload-label">
+                            <i class="fas fa-folder-open"></i> Choose Image
+                        </label>
+                        <p id="file-name" class="text-muted">No file selected</p>
+                        <button type="button" id="analyze-btn" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Analyze Image
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="feature-card bg-card animated-item">
+                <h3><i class="fas fa-seedling"></i> Prevention Tips</h3>
+                <p>Keep your plants healthy with these practices:</p>
+                <ul class="prevention-list">
+                    <li>Follow good sanitation practices</li>
+                    <li>Fertilize appropriately</li>
+                    <li>Inspect new plants before bringing them home</li>
+                    <li>Allow soil to warm before planting</li>
+                    <li>Rotate crops annually</li>
+                    <li>Ensure good air circulation</li>
+                </ul>
+                <a href="https://www.thespruce.com/prevent-plant-diseases-in-your-garden-2539511" target="_blank" class="btn btn-outline-success mt-3">
+                    <i class="fas fa-book"></i> Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Error Modal -->
+<div class="modal-overlay" id="error-modal">
+    <div class="modal-content">
+        <div class="modal-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h3>No File Selected</h3>
+        <p>Please select an image file before analyzing.</p>
+        <button class="modal-close" onclick="closeModal()">OK</button>
+    </div>
+</div>
+
+<script>
+    const fileInput = document.getElementById('image-upload');
+    const fileName = document.getElementById('file-name');
+    const analyzeBtn = document.getElementById('analyze-btn');
+    const uploadForm = document.getElementById('upload-form');
+    const errorModal = document.getElementById('error-modal');
+    
+    fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            fileName.textContent = this.files[0].name;
+        } else {
+            fileName.textContent = 'No file selected';
+        }
+    });
+
+    analyzeBtn.addEventListener('click', function() {
+        if (fileInput.files.length === 0) {
+            showModal();
+        } else {
+            uploadForm.submit();
+        }
+    });
+
+    function showModal() {
+        errorModal.classList.add('active');
+    }
+
+    function closeModal() {
+        errorModal.classList.remove('active');
+    }
+
+    // Close modal when clicking outside
+    errorModal.addEventListener('click', function(e) {
+        if (e.target === errorModal) {
+            closeModal();
+        }
+    });
+</script>
+{% endblock body %}

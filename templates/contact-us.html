@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+Contact Us
+{% endblock pagetitle %}
+
+{% block body %}
+<style>
+    .team-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+    
+    .team-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .team-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 15px;
+        padding: 2rem;
+        height: 100%;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    .team-img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid var(--primary-light);
+        margin-bottom: 1.5rem;
+    }
+    
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        color: white;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+        background-color: var(--accent);
+        color: var(--primary-dark);
+        transform: translateY(-3px);
+    }
+    
+    .contact-info {
+        margin-top: 1.5rem;
+    }
+    
+    .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    .contact-item i {
+        margin-right: 10px;
+        color: var(--accent);
+        width: 20px;
+        text-align: center;
+    }
+</style>
+
+<div class="team-container">
+    <div class="team-header">
+        <h1 class="display-4 mb-3"><i class="fas fa-address-card"></i> Contact Us</h1>
+        <p class="lead">For any queries & suggestions contact us. We are happy to help.</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="team-card bg-card animated-item">
+                <center>
+                    <img src="../static/iimg/pur.jpg" class="team-img">
+                    <h3>Purushothaman M</h3>
+                    <p class="text-muted">Web Developer & UI/UX Designer</p>
+                    <p>Currently pursuing Bachelors in Computer Science and Engineering with focus on Web Development, UI/UX Design, ML and Native App Development.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:purushothsolo@gmail.com" class="text-white">purushothsolo@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/manthan89-py" target="_blank" class="text-white">purushothaman7</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <a href="https://www.linkedin.com/in/manthanbhikadiya" target="_blank" class="text-white">Purushothaman</a>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="team-card bg-card animated-item">
+                <center>
+                    <img src="../static/iimg/sai.jpg" class="team-img">
+                    <h3>Sai Prasad R</h3>
+                    <p class="text-muted">Web Developer & ML Engineer</p>
+                    <p>Pursuing bachelors in Computer Science and Engineering with main focus on Web Development and Machine Learning.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:saiprasad7@gmail.com" class="text-white">saiprasad7@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/saiprasad7" target="_blank" class="text-white">sai.coder</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <a href="https://www.linkedin.com/in/saiprasad" target="_blank" class="text-white">Sai Prasad</a>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
