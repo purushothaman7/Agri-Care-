@@ -6,147 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Add this to your base.html head section -->
-<script>
-    // Translation dictionary
-    const translations = {
-        'en': {
-            'home': 'Home',
-            'services': 'Services',
-            'about': 'About',
-            'ai_engine': 'AI Engine',
-            'language': 'Language',
-            'english': 'English',
-            'hindi': 'Hindi',
-            'tamil': 'Tamil',
-            'telugu': 'Telugu',
-            'kannada': 'Kannada',
-            'malayalam': 'Malayalam',
-            'bengali': 'Bengali'
-        },
-        'hi': {
-            'home': 'होम',
-            'services': 'सेवाएं',
-            'about': 'हमारे बारे में',
-            'ai_engine': 'एआई इंजन',
-            'language': 'भाषा',
-            'english': 'अंग्रेज़ी',
-            'hindi': 'हिंदी',
-            'tamil': 'तमिल',
-            'telugu': 'तेलुगू',
-            'kannada': 'कन्नड़',
-            'malayalam': 'मलयालम',
-            'bengali': 'बंगाली'
-        },
-        'ta': {
-            'home': 'முகப்பு',
-            'services': 'சேவைகள்',
-            'about': 'எங்களைப் பற்றி',
-            'ai_engine': 'AI இயந்திரம்',
-            'language': 'மொழி',
-            'english': 'ஆங்கிலம்',
-            'hindi': 'இந்தி',
-            'tamil': 'தமிழ்',
-            'telugu': 'தெலுங்கு',
-            'kannada': 'கன்னடம்',
-            'malayalam': 'மலையாளம்',
-            'bengali': 'வங்காளம்'
-        },
-        'te': {
-            'home': 'హోమ్',
-            'services': 'సేవలు',
-            'about': 'మా గురించి',
-            'ai_engine': 'AI ఇంజిన్',
-            'language': 'భాష',
-            'english': 'ఆంగ్లం',
-            'hindi': 'హిందీ',
-            'tamil': 'తమిళం',
-            'telugu': 'తెలుగు',
-            'kannada': 'కన్నడ',
-            'malayalam': 'మలయాళం',
-            'bengali': 'బెంగాలీ'
-        },
-        'kn': {
-            'home': 'ಮುಖಪುಟ',
-            'services': 'ಸೇವೆಗಳು',
-            'about': 'ನಮ್ಮ ಬಗ್ಗೆ',
-            'ai_engine': 'AI ಎಂಜಿನ್',
-            'language': 'ಭಾಷೆ',
-            'english': 'ಆಂಗ್ಲ',
-            'hindi': 'ಹಿಂದಿ',
-            'tamil': 'ತಮಿಳು',
-            'telugu': 'ತೆಲುಗು',
-            'kannada': 'ಕನ್ನಡ',
-            'malayalam': 'ಮಲಯಾಳಂ',
-            'bengali': 'ಬಂಗಾಳಿ'
-        },
-        'ml': {
-            'home': 'ഹോം',
-            'services': 'സേവനങ്ങൾ',
-            'about': 'ഞങ്ങളെക്കുറിച്ച്',
-            'ai_engine': 'AI എഞ്ചിൻ',
-            'language': 'ഭാഷ',
-            'english': 'ഇംഗ്ലീഷ്',
-            'hindi': 'ഹിന്ദി',
-            'tamil': 'തമിഴ്',
-            'telugu': 'തെലുങ്ക്',
-            'kannada': 'കന്നഡ',
-            'malayalam': 'മലയാളം',
-            'bengali': 'ബംഗാളി'
-        },
-        'bn': {
-            'home': 'হোম',
-            'services': 'সেবা',
-            'about': 'আমাদের সম্পর্কে',
-            'ai_engine': 'এআই ইঞ্জিন',
-            'language': 'ভাষা',
-            'english': 'ইংরেজি',
-            'hindi': 'হিন্দি',
-            'tamil': 'তামিল',
-            'telugu': 'তেলুগু',
-            'kannada': 'কন্নড়',
-            'malayalam': 'মালায়ালাম',
-            'bengali': 'বাংলা'
-        }
-    };
-
-    // Function to set language preference
-    function setLanguage(lang) {
-        document.cookie = `lang=${lang};path=/;max-age=${30 * 24 * 60 * 60}`;
-        applyTranslations(lang);
-    }
-
-    // Function to apply translations
-    function applyTranslations(lang) {
-        const langData = translations[lang] || translations['en'];
-        
-        // Update all elements with data-translate attribute
-        document.querySelectorAll('[data-translate]').forEach(el => {
-            const key = el.getAttribute('data-translate');
-            if (langData[key]) {
-                el.textContent = langData[key];
-            }
-        });
-
-        // Update dropdown button text
-        const dropdownBtn = document.getElementById('languageDropdown');
-        if (dropdownBtn) {
-            dropdownBtn.innerHTML = `<i class="fas fa-language"></i> ${langData['language']}`;
-        }
-    }
-
-    // Function to get language from cookie
-    function getLanguage() {
-        const cookie = document.cookie.split('; ').find(row => row.startsWith('lang='));
-        return cookie ? cookie.split('=')[1] : 'en';
-    }
-
-    // Initialize language on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        const lang = getLanguage();
-        applyTranslations(lang);
-    });
-</script>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -407,27 +266,14 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="/" data-translate="home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.krsikx.com/" data-translate="services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.krsikx.com/copy-of-solutions" data-translate="about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" target="_blank" href="/market" data-translate="services">Market</a></li>
+                    
+                    <li class="nav-item"><a class="nav-link" target="_blank" href="/chatbot" data-translate="about">Chatbot</a></li>
                     <li class="nav-item laptop"><a class="nav-link" href="/index" data-translate="ai_engine">AI Engine</a></li> 
+                    <li class="nav-item"><a class="nav-link" target="_blank" href="/contact" data-translate="about">About</a></li>
                 </ul>
                 
-                <!-- Language Selector Dropdown -->
-                <!-- Replace the existing dropdown with this -->
-<div class="dropdown ms-3">
-    <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-language"></i> <span data-translate="language">Language</span>
-    </button>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-        <li><a class="dropdown-item" href="#" onclick="setLanguage('en')"><span data-translate="english">English</span></a></li>
-        <li><a class="dropdown-item" href="#" onclick="setLanguage('hi')"><span data-translate="hindi">Hindi</span></a></li>
-        <li><a class="dropdown-item" href="#" onclick="setLanguage('ta')"><span data-translate="tamil">Tamil</span></a></li>
-        <li><a class="dropdown-item" href="#" onclick="setLanguage('te')"><span data-translate="telugu">Telugu</span></a></li>
-        <li><a class="dropdown-item" href="#" onclick="setLanguage('kn')"><span data-translate="kannada">Kannada</span></a></li>
-        <li><a class="dropdown-item" href="#" onclick="setLanguage('ml')"><span data-translate="malayalam">Malayalam</span></a></li>
-        <li><a class="dropdown-item" href="#" onclick="setLanguage('bn')"><span data-translate="bengali">Bengali</span></a></li>
-    </ul>
-</div>
+        
             </div>
         </div>
     </nav> 
